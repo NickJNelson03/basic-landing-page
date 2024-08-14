@@ -52,7 +52,7 @@
                     <div class="row gx-5 justify-content-center">
                         <div class="col-lg-8 col-xl-6">
                             <!-- Contact Form -->
-                            <form id="contactForm" action="https://script.google.com/macros/s/AKfycby9P-MeQlU70zean2gN1PH6SjFe1lHCAbLXYsBKiI5zMFvneeWYdDDGC1ZtzMsZ0Gn-/exec" method="POST" onsubmit="handleSubmit(event)">
+                            <form id="contactForm" action="https://script.google.com/macros/s/AKfycbzkJEipJGUNtDrVsKqiuQbhK-IhxlI5rXtd4rHCIXeUmQ8rI0tyLe3vixE7G_6FtAW_/exec" method="POST" onsubmit="handleSubmit(event)">
                                 <!-- Name input-->
                                 <div class="form-floating mb-3">
                                     <input class="form-control" id="name" name="name" type="text" placeholder="Enter your name..." required />
@@ -120,13 +120,9 @@
                 method: form.method,
                 body: formData,
             })
-            .then(response => response.text()) // Parse response as text
-            .then(text => {
-                if (text.includes('Success')) {
-                    document.getElementById('submitSuccessMessage').classList.remove('d-none');
-                    setTimeout(() => {
-                        window.location.href = 'https://nickjnelson.com'; // Redirect to home page on success
-                    }, 2000); // Redirect after 2 seconds
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = 'https://nickjnelson.com'; // Redirect to home page on success
                 } else {
                     document.getElementById('submitErrorMessage').classList.remove('d-none');
                 }
