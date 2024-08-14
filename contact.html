@@ -120,9 +120,13 @@
                 method: form.method,
                 body: formData,
             })
-            .then(response => {
-                if (response.ok) {
-                    window.location.href = 'https://nickjnelson.com'; // Redirect to home page on success
+            .then(response => response.text()) // Parse response as text
+            .then(text => {
+                if (text.includes('Success')) {
+                    document.getElementById('submitSuccessMessage').classList.remove('d-none');
+                    setTimeout(() => {
+                        window.location.href = 'https://nickjnelson.com'; // Redirect to home page on success
+                    }, 2000); // Redirect after 2 seconds
                 } else {
                     document.getElementById('submitErrorMessage').classList.remove('d-none');
                 }
